@@ -36,3 +36,8 @@ td {
     background-color: #fef3c7;
     color: #92400f;
 }
+
+select.border-0:focus {
+    outline: none;
+    box-shadow: none;
+}

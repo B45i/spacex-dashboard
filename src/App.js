@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar';
-import LaunchGrid from './components/LaunchGrid';
+import LaunchGrid from './components/LaunchGrid/LaunchGrid';
 
 import './App.css';
 
