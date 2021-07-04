@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { getLaunches } from '../services/spacex-service';
 import Pagination from 'react-bootstrap/Pagination';
 
@@ -58,20 +58,30 @@ const LaunchGrid = () => {
                 </tbody>
             </table>
 
-            <div className="d-flex justify-content-end">
-                <div></div>
-                <Pagination>
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Item active>{2}</Pagination.Item>
-                    <Pagination.Ellipsis />
+            {/* pagination placeholder */}
+            {launches.page && (
+                <div className="d-flex justify-content-end">
+                    <Pagination>
+                        <Pagination.Prev disabled={!launches.hasPrevPage} />
+                        {launches.hasPrevPage && (
+                            <Pagination.Item>1</Pagination.Item>
+                        )}
+                        <Pagination.Item active>
+                            {launches.page}
+                        </Pagination.Item>
 
-                    <Pagination.Item disabled>{14}</Pagination.Item>
-
-                    <Pagination.Item>{20}</Pagination.Item>
-                    <Pagination.Next />
-                </Pagination>
-            </div>
+                        {launches.hasNextPage && (
+                            <Fragment>
+                                <Pagination.Ellipsis disabled />
+                                <Pagination.Item>
+                                    {launches.totalPages}
+                                </Pagination.Item>
+                            </Fragment>
+                        )}
+                        <Pagination.Next disabled={!launches.hasNextPage} />
+                    </Pagination>
+                </div>
+            )}
         </div>
     );
 };

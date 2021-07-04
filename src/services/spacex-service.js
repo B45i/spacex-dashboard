@@ -18,8 +18,9 @@ const dateOptions = {
 const launchOptions = {
     query: {},
     options: {
-        offset: 0,
+        // offset: 0,
         limit: 12,
+        page: 1,
         pagination: true,
         populate: ['rocket', 'launchpad', 'payloads'],
     },
