@@ -1,5 +1,38 @@
-/* utillity css */
+/* utility css */
 
 .bg-gray {
     background-color: #eee;
+}
+
+/* table style, move to different file */
+
+table {
+    border: 1px solid #dee2e6;
+}
+
+thead {
+    background-color: #eee;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+.launch-status {
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+.Failed {
+    background-color: #fde2e1;
+    color: #981b1c;
+}
+.Success {
+    background-color: #def7ec;
+    color: #03543f;
+}
+.Upcoming {
+    background-color: #fef3c7;
+    color: #92400f;
 }
