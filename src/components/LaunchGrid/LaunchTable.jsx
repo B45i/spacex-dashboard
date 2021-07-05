@@ -13,6 +13,7 @@ const LaunchTable = () => {
                     <i className="fa fa-spinner fa-10x fa-spin"></i>
                 </div>
             )}
+
             <table
                 className={`table table-borderless ${
                     loading ? 'opacity-50' : ''

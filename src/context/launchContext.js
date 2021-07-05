@@ -49,7 +49,6 @@ export const LaunchProvider = ({ children }) => {
                 ...filters,
                 ...newFilter,
             });
-        console.log(path);
         history.push(path);
     };
 

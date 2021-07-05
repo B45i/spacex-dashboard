@@ -35,17 +35,32 @@ const launchMapper = r => ({
     launchpad_ame: r.launchpad.name,
 });
 
+const statusQueries = {
+    all: null,
+    upcoming: { upcoming: true },
+    success: { success: true, upcoming: false },
+    failed: { success: false, upcoming: false },
+};
+
+const getLaunchQuery = filter => {
+    return {
+        ...statusQueries[filter.status || 'all'],
+    };
+};
+
+const getLaunchBody = filter => ({
+    query: getLaunchQuery(filter),
+    options: {
+        // offset: 0,
+        limit: 12,
+        page: filter.page || 1,
+        pagination: true,
+        populate: ['rocket', 'launchpad', 'payloads'],
+    },
+});
+
 export const getLaunches = async filter => {
-    const response = await API.post(`launches/query`, {
-        query: {},
-        options: {
-            // offset: 0,
-            limit: 12,
-            page: filter.page || 1,
-            pagination: true,
-            populate: ['rocket', 'launchpad', 'payloads'],
-        },
-    });
+    const response = await API.post(`launches/query`, getLaunchBody(filter));
 
     if (!response.data) {
         return {};
@@ -53,6 +68,7 @@ export const getLaunches = async filter => {
 
     const launches = {
         ...response.data,
+        status: filter.status,
         docs: (response.data.docs || []).map(launchMapper),
     };
     return launches;
