@@ -46,7 +46,7 @@ const launchMapper = r => ({
     launchpad_ame: r.launchpad.name,
 });
 
-export const getLaunches = async () => {
+export const getLaunches = async filter => {
     const response = await API.post(`launches/query`, launchOptions);
 
     if (!response.data) {

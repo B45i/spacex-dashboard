@@ -1,7 +1,9 @@
 import Pagination from 'react-bootstrap/Pagination';
 import { Fragment } from 'react';
+import { useLaunch } from '../../context/launchContext';
 
-const LaunchPagination = ({ page, hasPrevPage, hasNextPage, totalPages }) => {
+const LaunchPagination = () => {
+    const { page, hasPrevPage, hasNextPage, totalPages } = useLaunch();
     if (!page) {
         return null;
     }

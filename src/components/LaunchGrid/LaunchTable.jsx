@@ -1,4 +1,11 @@
-const LaunchTable = ({ docs }) => {
+import { useLaunch } from '../../context/launchContext';
+
+const LaunchTable = () => {
+    const { docs } = useLaunch();
+    if (!docs) {
+        return null;
+    }
+
     return (
         <div className="table-container">
             <table className="table table-borderless">

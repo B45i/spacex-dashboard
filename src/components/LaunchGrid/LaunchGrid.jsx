@@ -1,23 +1,17 @@
-import { useEffect, useState } from 'react';
-
-import { getLaunches } from '../../services/spacex-service';
-import LaunchTable from './LaunchTable';
+import { LaunchProvider } from '../../context/launchContext';
 import LaunchFilter from './LaunchFilter';
+import LaunchTable from './LaunchTable';
 import LaunchPagination from './LaunchPagination';
 
-const LaunchGrid = () => {
-    // todo: proper state management
-    const [launches, setlaunches] = useState({});
-    useEffect(() => {
-        getLaunches().then(l => setlaunches(l));
-    }, []);
-
+const LaunchGrid = props => {
     return (
-        <div className="container">
-            <LaunchFilter />
-            <LaunchTable docs={launches.docs || []} />
-            <LaunchPagination {...launches} />
-        </div>
+        <LaunchProvider>
+            <div className="container">
+                <LaunchFilter />
+                <LaunchTable />
+                <LaunchPagination />
+            </div>
+        </LaunchProvider>
     );
 };
 
