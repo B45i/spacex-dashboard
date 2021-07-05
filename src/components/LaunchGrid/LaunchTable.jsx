@@ -1,14 +1,23 @@
 import { useLaunch } from '../../context/launchContext';
 
 const LaunchTable = () => {
-    const { docs } = useLaunch();
+    const { docs, loading } = useLaunch();
     if (!docs) {
         return null;
     }
 
     return (
         <div className="table-container">
-            <table className="table table-borderless">
+            {loading && (
+                <div className="position-absolute launch-loader text-muted">
+                    <i className="fa fa-spinner fa-10x fa-spin"></i>
+                </div>
+            )}
+            <table
+                className={`table table-borderless ${
+                    loading ? 'opacity-50' : ''
+                }`}
+            >
                 <thead>
                     <tr>
                         <th>No.</th>

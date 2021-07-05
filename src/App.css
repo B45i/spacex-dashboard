@@ -4,6 +4,10 @@
     background-color: #eee;
 }
 
+.opacity-50 {
+    opacity: 50%;
+}
+
 /* table style, move to different file */
 
 table {
@@ -46,4 +50,10 @@ select.border-0:focus {
 .table-container {
     border-radius: 5px;
     overflow: hidden;
+}
+
+.launch-loader {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

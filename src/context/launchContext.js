@@ -17,15 +17,28 @@ export const LaunchProvider = ({ children }) => {
         loading: true,
     });
 
+    const changeLoading = loading => {
+        setLaunchState(prev => ({
+            ...prev,
+            loading,
+        }));
+    };
+
     useEffect(() => {
         const filters = queryString.parse(search);
-        getLaunches(filters).then(launches => {
-            setLaunchState(prevState => ({
-                ...prevState,
-                ...filters,
-                ...launches,
-            }));
-        });
+        changeLoading(true);
+        getLaunches(filters)
+            .then(launches => {
+                setLaunchState(prevState => ({
+                    ...prevState,
+                    ...filters,
+                    ...launches,
+                }));
+            })
+            .catch(console.error)
+            .finally(() => {
+                changeLoading(false);
+            });
     }, [search]);
 
     const addFilter = newFilter => {
