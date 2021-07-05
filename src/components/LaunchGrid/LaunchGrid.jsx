@@ -3,7 +3,7 @@ import LaunchFilter from './LaunchFilter';
 import LaunchTable from './LaunchTable';
 import LaunchPagination from './LaunchPagination';
 
-const LaunchGrid = props => {
+const LaunchGrid = () => {
     return (
         <LaunchProvider>
             <div className="container">

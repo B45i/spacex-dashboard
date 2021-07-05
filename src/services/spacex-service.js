@@ -15,17 +15,6 @@ const dateOptions = {
     hour12: false,
 };
 
-const launchOptions = {
-    query: {},
-    options: {
-        // offset: 0,
-        limit: 12,
-        page: 1,
-        pagination: true,
-        populate: ['rocket', 'launchpad', 'payloads'],
-    },
-};
-
 const getLaunchStatus = r => {
     if (r.upcoming) {
         return 'Upcoming';
@@ -47,7 +36,16 @@ const launchMapper = r => ({
 });
 
 export const getLaunches = async filter => {
-    const response = await API.post(`launches/query`, launchOptions);
+    const response = await API.post(`launches/query`, {
+        query: {},
+        options: {
+            // offset: 0,
+            limit: 12,
+            page: filter.page || 1,
+            pagination: true,
+            populate: ['rocket', 'launchpad', 'payloads'],
+        },
+    });
 
     if (!response.data) {
         return {};

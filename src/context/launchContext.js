@@ -11,38 +11,37 @@ export const useLaunch = () => {
 
 export const LaunchProvider = ({ children }) => {
     const { search } = useLocation();
-    // const history = useHistory();
+    const history = useHistory();
 
     const [launchState, setLaunchState] = useState({
         loading: true,
-        page: 1,
-        docs: [],
     });
 
     useEffect(() => {
         const filters = queryString.parse(search);
         getLaunches(filters).then(launches => {
-            setLaunchState(launches);
+            setLaunchState(prevState => ({
+                ...prevState,
+                ...filters,
+                ...launches,
+            }));
         });
-        setLaunchState(prevState => ({
-            ...prevState,
-            ...filters,
-        }));
     }, [search]);
 
-    // const pushHistory = () => {
-    // let path =
-    //     '?' +
-    //     queryString.stringify({
-    //         ...filters,
-    //         page: parseInt(filters.page) + 1,
-    //     });
-    // console.log(path);
-    // history.push(path);
-    // };
+    const addFilter = newFilter => {
+        const filters = queryString.parse(search);
+        let path =
+            '?' +
+            queryString.stringify({
+                ...filters,
+                ...newFilter,
+            });
+        console.log(path);
+        history.push(path);
+    };
 
     return (
-        <LaunchContext.Provider value={launchState}>
+        <LaunchContext.Provider value={{ ...launchState, addFilter }}>
             {children}
         </LaunchContext.Provider>
     );
