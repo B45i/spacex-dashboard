@@ -43,16 +43,34 @@ const launchMapper = r => ({
 });
 
 const statusQueries = {
-    all: null,
     upcoming: { upcoming: true },
     success: { success: true, upcoming: false },
     failed: { success: false, upcoming: false },
 };
 
+// "query": {
+//     "$and": [
+//         {"date_utc": {"$gte": "2017-10-30T19:34:00.000Z"}},
+//         {"date_utc": {"$lte": "2017-10-30T19:34:00.000Z"}}
+//         ]
+// },
+
 const getLaunchQuery = filter => {
-    return {
-        ...statusQueries[filter.status || 'all'],
-    };
+    const $and = [];
+
+    if (filter.status !== 'all') {
+        $and.push(statusQueries[filter.status]);
+    }
+
+    if (filter.startDate) {
+        $and.push({ date_utc: { $gte: filter.startDate } });
+    }
+
+    if (filter.endDate) {
+        $and.push({ date_utc: { $lte: filter.endDate } });
+    }
+
+    return $and.length ? { $and } : {};
 };
 
 const getLaunchBody = filter => ({
