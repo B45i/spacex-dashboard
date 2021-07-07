@@ -16,7 +16,7 @@ const LaunchModal = ({ show, data, toggleModal }) => {
         },
         {
             label: 'Rocket Type',
-            value: '',
+            value: data.rocket_type,
         },
         {
             label: 'Rocket Name',
@@ -36,7 +36,7 @@ const LaunchModal = ({ show, data, toggleModal }) => {
         },
         {
             label: 'Payload Type',
-            value: '',
+            value: data.payload_type,
         },
         {
             label: 'Orbit',
@@ -59,12 +59,13 @@ const LaunchModal = ({ show, data, toggleModal }) => {
             <Modal.Header closeButton>
                 <Modal.Title>
                     <div className="d-flex align-items-start modal-title justify-content-start mb-2">
-                        <img
-                            className="mission-patch"
-                            src={data.links?.patch?.small}
-                            alt="mission patch"
-                        />
-
+                        <div className="mr-3">
+                            <img
+                                className="mission-patch"
+                                src={data.links?.patch?.small}
+                                alt="mission patch"
+                            />
+                        </div>
                         <div>
                             <h5>{data?.mission_name}</h5>
                             <div className="pb-2">{data?.rocket_name}</div>
@@ -102,11 +103,26 @@ const LaunchModal = ({ show, data, toggleModal }) => {
                             </div>
                         </div>
 
-                        <div className={`launch-status mx-3 ${data?.status}`}>
+                        <div className={`launch-status mx-1 ${data?.status}`}>
                             {data?.status}
                         </div>
                     </div>
-                    {data.details && <p className="mb-0">{data.details}</p>}
+                    {data.details && (
+                        <p className="mb-0">
+                            {data.details}
+                            {data.rocket_wiki && (
+                                <a
+                                    className="mx-2"
+                                    href={data.rocket_wiki}
+                                    target="_blank"
+                                    without
+                                    rel="noreferrer"
+                                >
+                                    Wikipedia
+                                </a>
+                            )}
+                        </p>
+                    )}
                 </Modal.Title>
             </Modal.Header>
 
