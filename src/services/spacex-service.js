@@ -32,7 +32,12 @@ const launchMapper = r => ({
     orbit: r.payloads[0].orbit,
     status: getLaunchStatus(r),
     rocket_name: r.rocket.name,
-    launchpad_ame: r.launchpad.name,
+    rocket_manufacturer: r.rocket.company,
+    launchpad_name: r.launchpad.name,
+    links: r.links,
+    details: r.details,
+    nationalities: r.payloads[0].nationalities,
+    payload_type: r.payloads[0].type,
 });
 
 const statusQueries = {
@@ -51,7 +56,6 @@ const getLaunchQuery = filter => {
 const getLaunchBody = filter => ({
     query: getLaunchQuery(filter),
     options: {
-        // offset: 0,
         limit: 12,
         page: filter.page || 1,
         pagination: true,

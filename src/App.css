@@ -57,3 +57,27 @@ select.border-0:focus {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* modal */
+
+.mission-patch {
+    max-width: 6rem;
+}
+
+.modal-title {
+    font-size: initial !important;
+    font-weight: initial !important;
+}
+.modal-header {
+    border-bottom: none;
+}
+.modal-link {
+    margin-right: 1rem;
+    color: #888;
+}
+.modal-link:hover {
+    color: #000;
+}
+.info-border:not(:last-child) {
+    border-bottom: solid 1px #eae5e5;
+}

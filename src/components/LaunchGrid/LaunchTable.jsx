@@ -1,13 +1,25 @@
+import { useState } from 'react';
 import { useLaunch } from '../../context/launchContext';
+import LaunchModal from '../LaunchModal';
 
 const LaunchTable = () => {
     const { docs, loading } = useLaunch();
-    if (!docs) {
-        return null;
-    }
+    const [modalData, setModalData] = useState({
+        show: false,
+        data: null,
+    });
+
+    const toggleModal = (show, data) => {
+        setModalData({
+            show,
+            data,
+        });
+    };
 
     return (
         <div className="table-container">
+            <LaunchModal {...modalData} toggleModal={toggleModal} />
+
             {loading && (
                 <div className="position-absolute launch-loader text-muted">
                     <i className="fa fa-spinner fa-10x fa-spin"></i>
@@ -32,13 +44,16 @@ const LaunchTable = () => {
                 </thead>
                 <tbody>
                     {(docs || []).map(i => (
-                        <tr key={i.flight_number}>
+                        <tr
+                            onClick={e => toggleModal(true, i)}
+                            key={i.flight_number}
+                        >
                             <td>
                                 {i.flight_number < 10 ? '0' : ''}
                                 {i.flight_number}
                             </td>
                             <td>{i.date_utc}</td>
-                            <td>{i.launchpad_ame}</td>
+                            <td>{i.launchpad_name}</td>
                             <td>{i.mission_name}</td>
                             <td>{i.orbit}</td>
                             <td>
