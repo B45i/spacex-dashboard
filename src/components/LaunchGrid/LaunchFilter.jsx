@@ -22,14 +22,11 @@ const LaunchFilter = () => {
                 <i className="fa fa-filter text-muted"></i>
                 <select
                     onChange={changeStatus}
+                    value={status}
                     className="form-control w-auto mb-3 border-0"
                 >
                     {options.map((o, i) => (
-                        <option
-                            key={i}
-                            value={o.value}
-                            selected={o.value === status}
-                        >
+                        <option key={i} value={o.value}>
                             {o.label}
                         </option>
                     ))}

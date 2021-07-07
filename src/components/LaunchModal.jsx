@@ -8,7 +8,7 @@ const LaunchModal = ({ show, data, toggleModal }) => {
     const rocketInfo = [
         {
             label: 'Flight Number',
-            value: 'flight_number',
+            value: data.flight_number,
         },
         {
             label: 'Mission Name',
@@ -61,8 +61,8 @@ const LaunchModal = ({ show, data, toggleModal }) => {
                     <div className="d-flex align-items-start modal-title justify-content-start mb-2">
                         <img
                             className="mission-patch"
-                            src="https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png"
-                            alt="Mission Patch"
+                            src={data.links?.patch?.small}
+                            alt="mission patch"
                         />
 
                         <div>
@@ -76,7 +76,7 @@ const LaunchModal = ({ show, data, toggleModal }) => {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i class="fas fa-newspaper"></i>
+                                        <i className="fas fa-newspaper"></i>
                                     </a>
                                 )}
                                 {data?.links?.wikipedia && (
@@ -96,7 +96,7 @@ const LaunchModal = ({ show, data, toggleModal }) => {
                                         rel="noreferrer"
                                         href={`https://www.youtube.com/watch?v=${data?.links?.youtube_id}`}
                                     >
-                                        <i class="fab fa-youtube"></i>
+                                        <i className="fab fa-youtube"></i>
                                     </a>
                                 )}
                             </div>
@@ -113,7 +113,7 @@ const LaunchModal = ({ show, data, toggleModal }) => {
             <Modal.Body>
                 <div className="px-2">
                     {rocketInfo.map(info => (
-                        <div className="row py-2 info-border">
+                        <div className="row py-2 info-border" key={info.label}>
                             <div className="col-6">{info.label}</div>
                             <div className="col-6">{info.value}</div>
                         </div>
