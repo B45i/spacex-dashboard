@@ -43,9 +43,9 @@ const launchMapper = r => ({
 });
 
 const statusQueries = {
-    upcoming: { upcoming: true },
-    success: { success: true, upcoming: false },
-    failed: { success: false, upcoming: false },
+    upcoming: [{ upcoming: true }],
+    success: [{ success: true }, { upcoming: false }],
+    failed: [{ success: false }, { upcoming: false }],
 };
 
 const getLaunchQuery = filter => {
@@ -55,7 +55,7 @@ const getLaunchQuery = filter => {
     const $and = [];
 
     if (filter.status) {
-        $and.push(statusQueries[filter.status]);
+        $and.push(...statusQueries[filter.status]);
     }
 
     if (filter.startDate) {
