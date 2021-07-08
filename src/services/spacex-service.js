@@ -48,17 +48,13 @@ const statusQueries = {
     failed: { success: false, upcoming: false },
 };
 
-// "query": {
-//     "$and": [
-//         {"date_utc": {"$gte": "2017-10-30T19:34:00.000Z"}},
-//         {"date_utc": {"$lte": "2017-10-30T19:34:00.000Z"}}
-//         ]
-// },
-
 const getLaunchQuery = filter => {
+    if (!Object.keys(filter).length) {
+        return {};
+    }
     const $and = [];
 
-    if (filter.status !== 'all') {
+    if (filter.status && filter.status !== 'all') {
         $and.push(statusQueries[filter.status]);
     }
 
@@ -70,7 +66,7 @@ const getLaunchQuery = filter => {
         $and.push({ date_utc: { $lte: filter.endDate } });
     }
 
-    return $and.length ? { $and } : {};
+    return { $and };
 };
 
 const getLaunchBody = filter => ({

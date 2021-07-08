@@ -81,3 +81,7 @@ select.border-0:focus {
 .info-border:not(:last-child) {
     border-bottom: solid 1px #eae5e5;
 }
+
+.date-filter-btn {
+    cursor: pointer;
+}

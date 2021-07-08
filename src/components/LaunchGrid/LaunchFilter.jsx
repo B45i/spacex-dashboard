@@ -1,4 +1,5 @@
 import { useLaunch } from '../../context/launchContext';
+import DateFilter from './DateFilter';
 
 const LaunchFilter = () => {
     const { status, addFilter } = useLaunch();
@@ -16,7 +17,7 @@ const LaunchFilter = () => {
     ];
     return (
         <div className="d-flex justify-content-between align-items-start">
-            <div>Last 6 Months</div>
+            <DateFilter />
 
             <div className="d-flex align-items-baseline">
                 <i className="fa fa-filter text-muted"></i>
