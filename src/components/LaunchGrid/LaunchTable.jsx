@@ -43,6 +43,11 @@ const LaunchTable = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    {(!docs || !docs?.length) && (
+                        <tr>
+                            <td colSpan="7">No data to display</td>
+                        </tr>
+                    )}
                     {(docs || []).map(i => (
                         <tr
                             onClick={e => toggleModal(true, i)}
