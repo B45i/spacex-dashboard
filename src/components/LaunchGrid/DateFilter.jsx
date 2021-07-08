@@ -20,6 +20,16 @@ const DateFilter = () => {
             endDate: endDate.toISOString(),
             page: 1,
         });
+        closeModal();
+    };
+
+    const clearFilter = () => {
+        addFilter({
+            startDate: null,
+            endDate: null,
+            page: 1,
+        });
+        closeModal();
     };
 
     const addDefaultDateFilter = key => {
@@ -27,22 +37,22 @@ const DateFilter = () => {
         const startDate = new Date();
 
         switch (key) {
-            case 1:
+            case '1':
                 startDate.setDate(startDate.getDate() - 7);
                 break;
-            case 2:
+            case '2':
                 startDate.setDate(startDate.getMonth() - 1);
                 break;
-            case 3:
+            case '3':
                 startDate.setDate(startDate.getMonth() - 3);
                 break;
-            case 4:
+            case '4':
                 startDate.setDate(startDate.getMonth() - 6);
                 break;
-            case 5:
+            case '5':
                 startDate.setFullYear(startDate.getFullYear() - 1);
                 break;
-            case 6:
+            case '6':
                 startDate.setFullYear(startDate.getFullYear() - 2);
                 break;
             default:
@@ -109,6 +119,15 @@ const DateFilter = () => {
                         <div className="col-9"></div>
                     </div>
                 </Modal.Body>
+
+                <Modal.Footer>
+                    <button className="btn btn-primary" onClick={closeModal}>
+                        Close
+                    </button>
+                    <button className="btn btn-primary" onClick={clearFilter}>
+                        Clear Date Filter
+                    </button>
+                </Modal.Footer>
             </Modal>
         </div>
     );

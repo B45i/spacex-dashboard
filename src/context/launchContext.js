@@ -43,12 +43,24 @@ export const LaunchProvider = ({ children }) => {
 
     const addFilter = newFilter => {
         const filters = queryString.parse(search);
-        let path =
-            '?' +
-            queryString.stringify({
-                ...filters,
-                ...newFilter,
-            });
+        const filterObject = {
+            ...filters,
+            ...newFilter,
+        };
+
+        if (!newFilter.status || newFilter.status === 'all') {
+            delete filterObject.status;
+        }
+
+        if (!newFilter.startDate) {
+            delete filterObject.startDate;
+        }
+
+        if (!newFilter.endDate) {
+            delete filterObject.endDate;
+        }
+
+        let path = '?' + queryString.stringify(filterObject);
         history.push(path);
     };
 

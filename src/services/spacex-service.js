@@ -49,12 +49,12 @@ const statusQueries = {
 };
 
 const getLaunchQuery = filter => {
-    if (!Object.keys(filter).length) {
+    if (!filter.startDate && !filter.endDate && !filter.status) {
         return {};
     }
     const $and = [];
 
-    if (filter.status && filter.status !== 'all') {
+    if (filter.status) {
         $and.push(statusQueries[filter.status]);
     }
 
