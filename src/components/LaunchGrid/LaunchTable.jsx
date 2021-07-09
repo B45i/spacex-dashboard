@@ -22,7 +22,7 @@ const LaunchTable = () => {
 
             {loading && (
                 <div className="position-absolute launch-loader text-muted">
-                    <i className="fa fa-spinner fa-10x fa-spin"></i>
+                    <i className="fa fa-spinner fa-4x fa-spin"></i>
                 </div>
             )}
 
