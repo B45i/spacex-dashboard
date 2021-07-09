@@ -103,13 +103,22 @@ const DateFilter = () => {
 
     return (
         <div>
-            <div
-                onClick={openModal}
-                className="date-filter-btn text-muted mt-1"
-            >
-                <i className="far fa-calendar"></i>
-                <span className="mx-2">Date Filter</span>
-                <i className="fas fa-chevron-down"></i>
+            <div className="d-flex align-items-baseline">
+                <div
+                    onClick={openModal}
+                    className="date-filter-btn text-muted mt-1"
+                >
+                    <i className="far fa-calendar"></i>
+                    <span className="mx-2">Date Filter</span>
+                    <i className="fas fa-chevron-down"></i>
+                </div>
+                <a
+                    title="Clear Filter"
+                    className="icon-link ml-3"
+                    onClick={clearFilter}
+                >
+                    <i className="fas fa-times"></i>
+                </a>
             </div>
 
             <Modal
