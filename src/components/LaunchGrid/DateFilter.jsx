@@ -108,7 +108,7 @@ const DateFilter = () => {
                 className="date-filter-btn text-muted mt-1"
             >
                 <i className="far fa-calendar"></i>
-                <span className="mx-2">Last 6 Months</span>
+                <span className="mx-2">Date Filter</span>
                 <i className="fas fa-chevron-down"></i>
             </div>
 
