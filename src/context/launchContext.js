@@ -29,11 +29,10 @@ export const LaunchProvider = ({ children }) => {
         changeLoading(true);
         getLaunches(filters)
             .then(launches => {
-                setLaunchState(prevState => ({
-                    ...prevState,
+                setLaunchState({
                     ...filters,
                     ...launches,
-                }));
+                });
             })
             .catch(console.error)
             .finally(() => {
@@ -48,15 +47,15 @@ export const LaunchProvider = ({ children }) => {
             ...newFilter,
         };
 
-        if (!newFilter.status || newFilter.status === 'all') {
+        if (!filterObject.status || filterObject.status === 'all') {
             delete filterObject.status;
         }
 
-        if (!newFilter.startDate) {
+        if (!filterObject.startDate) {
             delete filterObject.startDate;
         }
 
-        if (!newFilter.endDate) {
+        if (!filterObject.endDate) {
             delete filterObject.endDate;
         }
 

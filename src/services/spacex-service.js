@@ -72,7 +72,7 @@ const getLaunchQuery = filter => {
 const getLaunchBody = filter => ({
     query: getLaunchQuery(filter),
     options: {
-        limit: 12,
+        limit: 10,
         page: filter.page || 1,
         pagination: true,
         populate: ['rocket', 'launchpad', 'payloads'],

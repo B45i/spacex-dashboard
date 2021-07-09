@@ -3,7 +3,7 @@ import { useLaunch } from '../../context/launchContext';
 import LaunchModal from '../LaunchModal';
 
 const LaunchTable = () => {
-    const { docs, loading } = useLaunch();
+    const { docs, loading, page } = useLaunch();
     const [modalData, setModalData] = useState({
         show: false,
         data: null,
@@ -48,25 +48,21 @@ const LaunchTable = () => {
                             <td colSpan="7">No data to display</td>
                         </tr>
                     )}
-                    {(docs || []).map(i => (
-                        <tr
-                            onClick={e => toggleModal(true, i)}
-                            key={i.flight_number}
-                        >
+                    {(docs || []).map((launch, i) => (
+                        <tr onClick={e => toggleModal(true, launch)} key={i}>
+                            <td>{(page - 1) * 10 + i + 1}</td>
+                            <td>{launch.date_utc}</td>
+                            <td>{launch.launchpad_name}</td>
+                            <td>{launch.mission_name}</td>
+                            <td>{launch.orbit}</td>
                             <td>
-                                {i.flight_number < 10 ? '0' : ''}
-                                {i.flight_number}
-                            </td>
-                            <td>{i.date_utc}</td>
-                            <td>{i.launchpad_name}</td>
-                            <td>{i.mission_name}</td>
-                            <td>{i.orbit}</td>
-                            <td>
-                                <span className={`launch-status ${i.status}`}>
-                                    {i.status}
+                                <span
+                                    className={`launch-status ${launch.status}`}
+                                >
+                                    {launch.status}
                                 </span>
                             </td>
-                            <td>{i.rocket_name}</td>
+                            <td>{launch.rocket_name}</td>
                         </tr>
                     ))}
                 </tbody>

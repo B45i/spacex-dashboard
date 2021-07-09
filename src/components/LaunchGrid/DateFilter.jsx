@@ -49,13 +49,13 @@ const DateFilter = () => {
                 defaultStartDate.setDate(defaultStartDate.getDate() - 7);
                 break;
             case '2':
-                defaultStartDate.setDate(defaultStartDate.getMonth() - 1);
+                defaultStartDate.setMonth(defaultStartDate.getMonth() - 1);
                 break;
             case '3':
-                defaultStartDate.setDate(defaultStartDate.getMonth() - 3);
+                defaultStartDate.setMonth(defaultStartDate.getMonth() - 3);
                 break;
             case '4':
-                defaultStartDate.setDate(defaultStartDate.getMonth() - 6);
+                defaultStartDate.setMonth(defaultStartDate.getMonth() - 6);
                 break;
             case '5':
                 defaultStartDate.setFullYear(
