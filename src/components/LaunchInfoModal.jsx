@@ -1,4 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
+import './LaunchInfoModal.css';
 
 const LaunchInfoModal = ({ show, data, toggleModal }) => {
     const close = () => toggleModal(false);

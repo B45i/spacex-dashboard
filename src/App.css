@@ -1,13 +1,3 @@
-/* utility css */
-
-.bg-gray {
-    background-color: #eee;
-}
-
-.opacity-50 {
-    opacity: 50%;
-}
-
 .launch-status {
     font-size: 0.8rem;
     padding: 0.2rem 0.6rem;
@@ -35,32 +25,18 @@ select.border-0:focus {
     box-shadow: none;
 }
 
-/* modal */
-
-.mission-patch {
-    max-width: 6rem;
-}
-
-.modal-title {
-    font-size: initial !important;
-    font-weight: initial !important;
-}
-.modal-header {
-    border-bottom: none;
-}
-.modal-link {
-    margin-right: 1rem;
-    color: #888;
-}
-.modal-link:hover {
-    color: #000;
-}
-.info-border:not(:last-child) {
-    border-bottom: solid 1px #eae5e5;
-}
-
 .date-filter-btn {
     cursor: pointer;
+}
+
+/* utility css */
+
+.bg-gray {
+    background-color: #eee;
+}
+
+.opacity-50 {
+    opacity: 50%;
 }
 
 .modal-1000 {
