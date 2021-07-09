@@ -5,7 +5,13 @@ import { useLaunch } from '../../context/launchContext';
 
 const DateFilter = () => {
     const [show, setShow] = useState(false);
-    const { addFilter } = useLaunch();
+    const {
+        addFilter,
+        startDate: filterStartDate,
+        endDate: filterEndDate,
+    } = useLaunch();
+
+    const hasDateFilter = filterStartDate && filterEndDate;
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -112,13 +118,15 @@ const DateFilter = () => {
                     <span className="mx-2">Date Filter</span>
                     <i className="fas fa-chevron-down"></i>
                 </div>
-                <a
-                    title="Clear Filter"
-                    className="icon-link ml-3"
-                    onClick={clearFilter}
-                >
-                    <i className="fas fa-times"></i>
-                </a>
+                {hasDateFilter && (
+                    <a
+                        title="Clear Filter"
+                        className="icon-link ml-3"
+                        onClick={clearFilter}
+                    >
+                        <i className="fas fa-times"></i>
+                    </a>
+                )}
             </div>
 
             <Modal
