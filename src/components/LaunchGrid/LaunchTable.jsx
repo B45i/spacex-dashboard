@@ -48,21 +48,24 @@ const LaunchTable = () => {
                             <td colSpan="7">No data to display</td>
                         </tr>
                     )}
-                    {(docs || []).map((launch, i) => (
-                        <tr onClick={e => toggleModal(true, launch)} key={i}>
+                    {(docs || []).map((launchInfo, i) => (
+                        <tr
+                            onClick={e => toggleModal(true, launchInfo)}
+                            key={i}
+                        >
                             <td>{(page - 1) * 10 + i + 1}</td>
-                            <td>{launch.date_utc}</td>
-                            <td>{launch.launchpad_name}</td>
-                            <td>{launch.mission_name}</td>
-                            <td>{launch.orbit}</td>
+                            <td>{launchInfo.date_utc}</td>
+                            <td>{launchInfo.launchpad_name}</td>
+                            <td>{launchInfo.mission_name}</td>
+                            <td>{launchInfo.orbit}</td>
                             <td>
                                 <span
-                                    className={`launch-status ${launch.status}`}
+                                    className={`launch-status ${launchInfo.status}`}
                                 >
-                                    {launch.status}
+                                    {launchInfo.status}
                                 </span>
                             </td>
-                            <td>{launch.rocket_name}</td>
+                            <td>{launchInfo.rocket_name}</td>
                         </tr>
                     ))}
                 </tbody>
