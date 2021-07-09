@@ -8,41 +8,23 @@
     opacity: 50%;
 }
 
-/* table style, move to different file */
-
-table {
-    border: 1px solid #dee2e6;
-    /* min-height: 625px; */
-}
-
-thead {
-    background-color: #eee;
-}
-
-th,
-td {
-    text-align: center;
-}
-
-.table-container {
-    border-radius: 5px;
-    overflow: hidden;
-}
-
 .launch-status {
     font-size: 0.8rem;
     padding: 0.2rem 0.6rem;
     border-radius: 20px;
     font-weight: 500;
 }
+
 .Failed {
     background-color: #fde2e1;
     color: #981b1c;
 }
+
 .Success {
     background-color: #def7ec;
     color: #03543f;
 }
+
 .Upcoming {
     background-color: #fef3c7;
     color: #92400f;
@@ -51,12 +33,6 @@ td {
 select.border-0:focus {
     outline: none;
     box-shadow: none;
-}
-
-.launch-loader {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 /* modal */
@@ -85,4 +61,8 @@ select.border-0:focus {
 
 .date-filter-btn {
     cursor: pointer;
+}
+
+.modal-1000 {
+    max-width: 1000px !important;
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLaunch } from '../../context/launchContext';
-import LaunchModal from '../LaunchModal';
+import LaunchInfoModal from '../LaunchInfoModal';
 
 const LaunchTable = () => {
     const { docs, loading, page } = useLaunch();
@@ -18,7 +18,7 @@ const LaunchTable = () => {
 
     return (
         <div className="table-container">
-            <LaunchModal {...modalData} toggleModal={toggleModal} />
+            <LaunchInfoModal {...modalData} toggleModal={toggleModal} />
 
             {loading && (
                 <div className="position-absolute launch-loader text-muted">

@@ -112,7 +112,13 @@ const DateFilter = () => {
                 <i className="fas fa-chevron-down"></i>
             </div>
 
-            <Modal size="xl" show={show} onHide={closeModal} centered>
+            <Modal
+                size="lg"
+                show={show}
+                onHide={closeModal}
+                centered
+                dialogClassName="modal-1000"
+            >
                 <Modal.Header closeButton />
 
                 <Modal.Body>

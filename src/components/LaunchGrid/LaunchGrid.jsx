@@ -3,6 +3,8 @@ import LaunchFilter from './LaunchFilter';
 import LaunchTable from './LaunchTable';
 import LaunchPagination from './LaunchPagination';
 
+import './LaunchGrid.css';
+
 const LaunchGrid = () => {
     return (
         <LaunchProvider>

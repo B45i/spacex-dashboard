@@ -1,0 +1,30 @@
+.table-container {
+    border: 1px solid #dee2e6;
+    min-height: 530px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.table-container thead {
+    background-color: #ddd;
+}
+
+.table-container th,
+.table-container td {
+    text-align: center;
+}
+
+.table-container tr {
+    cursor: pointer;
+}
+
+.table-container tr:hover {
+    background-color: #eee;
+}
+
+.launch-loader {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

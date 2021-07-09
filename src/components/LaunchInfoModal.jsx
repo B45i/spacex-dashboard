@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 
-const LaunchModal = ({ show, data, toggleModal }) => {
+const LaunchInfoModal = ({ show, data, toggleModal }) => {
     const close = () => toggleModal(false);
     if (!data) {
         return null;
@@ -140,4 +140,4 @@ const LaunchModal = ({ show, data, toggleModal }) => {
     );
 };
 
-export default LaunchModal;
+export default LaunchInfoModal;
