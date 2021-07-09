@@ -12,7 +12,7 @@
 
 table {
     border: 1px solid #dee2e6;
-    min-height: 625px;
+    /* min-height: 625px; */
 }
 
 thead {

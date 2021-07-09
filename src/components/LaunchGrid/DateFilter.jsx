@@ -1,10 +1,21 @@
 import Modal from 'react-bootstrap/Modal';
+import Calendar from 'react-calendar';
 import { useState } from 'react';
 import { useLaunch } from '../../context/launchContext';
+import { useEffect } from 'react';
 
 const DateFilter = () => {
     const [show, setShow] = useState(false);
     const { addFilter } = useLaunch();
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+    useEffect(() => {
+        if (!startDate && !endDate) {
+            applyDateFilter();
+        }
+    }, [startDate, endDate]);
 
     const openModal = () => {
         setShow(true);
@@ -14,52 +25,54 @@ const DateFilter = () => {
         setShow(false);
     };
 
-    const addDateFilter = (startDate, endDate) => {
+    const applyDateFilter = () => {
         addFilter({
-            startDate: startDate.toISOString(),
-            endDate: endDate.toISOString(),
+            startDate: startDate?.toISOString(),
+            endDate: endDate?.toISOString(),
             page: 1,
         });
         closeModal();
     };
 
     const clearFilter = () => {
-        addFilter({
-            startDate: null,
-            endDate: null,
-            page: 1,
-        });
-        closeModal();
+        setStartDate(null);
+        setEndDate(null);
+        // useEffect will kick in and clear the filters
     };
 
     const addDefaultDateFilter = key => {
-        const endDate = new Date();
-        const startDate = new Date();
+        const defaultEndDate = new Date();
+        const defaultStartDate = new Date();
 
         switch (key) {
             case '1':
-                startDate.setDate(startDate.getDate() - 7);
+                defaultStartDate.setDate(defaultStartDate.getDate() - 7);
                 break;
             case '2':
-                startDate.setDate(startDate.getMonth() - 1);
+                defaultStartDate.setDate(defaultStartDate.getMonth() - 1);
                 break;
             case '3':
-                startDate.setDate(startDate.getMonth() - 3);
+                defaultStartDate.setDate(defaultStartDate.getMonth() - 3);
                 break;
             case '4':
-                startDate.setDate(startDate.getMonth() - 6);
+                defaultStartDate.setDate(defaultStartDate.getMonth() - 6);
                 break;
             case '5':
-                startDate.setFullYear(startDate.getFullYear() - 1);
+                defaultStartDate.setFullYear(
+                    defaultStartDate.getFullYear() - 1
+                );
                 break;
             case '6':
-                startDate.setFullYear(startDate.getFullYear() - 2);
+                defaultStartDate.setFullYear(
+                    defaultStartDate.getFullYear() - 2
+                );
                 break;
             default:
                 break;
         }
 
-        addDateFilter(startDate, endDate);
+        setStartDate(defaultStartDate);
+        setEndDate(defaultEndDate);
     };
 
     const defaultFilters = [
@@ -88,6 +101,7 @@ const DateFilter = () => {
             key: '6',
         },
     ];
+
     return (
         <div>
             <div
@@ -99,10 +113,12 @@ const DateFilter = () => {
                 <i className="fas fa-chevron-down"></i>
             </div>
 
-            <Modal size="lg" show={show} onHide={closeModal} centered>
+            <Modal size="xl" show={show} onHide={closeModal} centered>
+                <Modal.Header closeButton />
+
                 <Modal.Body>
                     <div className="row">
-                        <div className="col-3 border-right">
+                        <div className="col-2 border-right">
                             {defaultFilters.map(filter => (
                                 <button
                                     onClick={e =>
@@ -116,16 +132,38 @@ const DateFilter = () => {
                                 </button>
                             ))}
                         </div>
-                        <div className="col-9"></div>
+
+                        <div className="col-10">
+                            <div className="row">
+                                <div className="col-6">
+                                    <Calendar
+                                        value={startDate}
+                                        onChange={setStartDate}
+                                    />
+                                </div>
+                                <div className="col-6">
+                                    <Calendar
+                                        value={endDate}
+                                        onChange={setEndDate}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button className="btn btn-primary" onClick={closeModal}>
-                        Close
-                    </button>
-                    <button className="btn btn-primary" onClick={clearFilter}>
+                    <button
+                        onClick={clearFilter}
+                        className="btn btn-outline-primary"
+                    >
                         Clear Date Filter
+                    </button>
+                    <button
+                        onClick={applyDateFilter}
+                        className="btn btn-primary"
+                    >
+                        Apply Date Filter
                     </button>
                 </Modal.Footer>
             </Modal>
